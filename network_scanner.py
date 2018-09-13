@@ -60,8 +60,8 @@ def get_arguments():
     """
     Get the target IP address from command line argument.
 
-    :return: options and arugments of command line arguments
-    :rtype: options
+    :return: IP Address of target device
+    :rtype: str
     """
     parser = optparse.OptionParser()
 
@@ -71,10 +71,10 @@ def get_arguments():
 
     options = parser.parse_args()
 
-    return options
+    return options.target
 
 
 if __name__ == "__main__":
-    command_options = get_arguments()
-    scan_result = scan(command_options.target)
+    target_ip = get_arguments()
+    scan_result = scan(target_ip)
     print_result(scan_result)
