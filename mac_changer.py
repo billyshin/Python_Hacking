@@ -88,7 +88,7 @@ if __name__ == "__main__":
     input_interface, input_new_mac_address = get_arguments()
 
     current_mac_address = get_current_mac_address(input_interface)
-    print("Before MAC Address = ", str(current_mac_address))
+    print("Before MAC Address = " + str(current_mac_address))
 
     change_mac(input_interface, input_new_mac_address)
 
