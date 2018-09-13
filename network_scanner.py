@@ -16,6 +16,7 @@ Need to install scapy:
 import scapy.all as scapy
 import optparse
 
+
 def scan(ip_address):
     """
     Discover clients on the same network using ARP protocol.
