@@ -1,6 +1,7 @@
 """
-Network Scanner Algorithm:
+Scan the current network and get the IP Address of target device.
 
+Network Scanner Algorithm:
 1. Create arp request directed to broadcast MAC asking for IP
     a) Use ARP to ask who has target IP
     b) Set destination MAC to broadcast MAC
