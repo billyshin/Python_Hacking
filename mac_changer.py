@@ -74,7 +74,7 @@ def get_current_mac_address(interface):
     :rtype: 
     
     """
-    ifcofnig_result = subprocess.check_output(["inconfig", interface])
+    ifcofnig_result = subprocess.check_output(["ifconfig", interface])
     mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w",
                                           ifcofnig_result)
 
