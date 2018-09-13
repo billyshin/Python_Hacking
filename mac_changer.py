@@ -1,5 +1,14 @@
 """
-MAC Address Changer by calling system commands using subprocess module.
+MAC Address Changer by calling system commands using subprocess module which
+is used to to ensure anonymity.
+
+Commands:
+    # Disable interface
+    ifconfig [interface] down
+    # Change MAC Address
+    ifconfig [interface] hw ether [New MAC Address]
+    # Enable interface
+    ifconfig [interface] up
 """
 import subprocess
 import optparse  # get arguments from user, parse and use them
