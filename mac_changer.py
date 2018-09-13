@@ -32,7 +32,7 @@ def get_arguments():
     parser.add_option("-m", "--mac", dest="new_mac_address",
                       help="New MAC Address")
 
-    (options, arguments) = get_arguments()
+    (options, arguments) = parser.parse_args()
 
     # Code to handle error
     if not options.interface:
