@@ -20,8 +20,9 @@ def get_arguments():
     """
     Get the name of interface and new MAC Address from user input.
     
-    :return: options and arugments of command line arguments
-    :rtype: (options, argument)
+    :return: name of the interface, and new MAC Address from command line 
+             argument
+    :rtype: str, str
     """
     parser = optparse.OptionParser()
 
@@ -41,7 +42,7 @@ def get_arguments():
     elif not options.new_mac_address:
         parser.error(
             "[-] Please specify a new MAC Address, use --help for more info.")
-    return options
+    return options.interface, options.new_mac_address
 
 
 def change_mac(interface, new_mac_address):
@@ -84,17 +85,17 @@ def get_current_mac_address(interface):
 
 
 if __name__ == "__main__":
-    command_options = get_arguments()
+    input_interface, input_new_mac_address = get_arguments()
 
-    current_mac_address = get_current_mac_address(command_options.interface)
+    current_mac_address = get_current_mac_address(input_interface)
     print("Before MAC Address = ", str(current_mac_address))
 
-    change_mac(command_options.interface, command_options.new_mac_address)
+    change_mac(input_interface, input_new_mac_address)
 
-    current_mac_address = get_current_mac_address(command_options.interface)
+    current_mac_address = get_current_mac_address(input_interface)
 
-    if current_mac_address == command_options.new_mac_address:
+    if current_mac_address == input_new_mac_address:
         print("[-] MAC Address was successfully changed to " +
-              command_options.new_mac_address)
+              input_new_mac_address)
     else:
         print("[-] MAC Address did not get changed.")
