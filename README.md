@@ -10,7 +10,7 @@ Required: Kali Linux
 Contents:
    1. mac_changer.py - A program that is used to change the MAC Address to ensure anonymity.
       
-      Usage: python mac_changer.py -i [Interace] -m [new MAC Address]
+      Usage: python mac_changer.py -i [Interface] -m [new MAC Address]
       
    2. network_scanner.py - A program that uses target IP Address to get the target MAC Address under same network.
       
@@ -22,4 +22,4 @@ Contents:
      
    4. packet_sniffer.py - A program that acts as MITM (Man In The Middle) to sniff/capture data through http layer such as url, username, password, etc.
       
-      Usage: python packet_sniffer.py -i [Interace]
+      Usage: python packet_sniffer.py -i [Interface]
