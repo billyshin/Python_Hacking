@@ -18,6 +18,25 @@ import scapy.all as scapy
 import optparse
 
 
+def get_arguments():
+    # Get command line arguments
+    """
+    Get the target IP address from command line argument.
+
+    :return: IP Address of target device
+    :rtype: str
+    """
+    parser = optparse.OptionParser()
+
+    # Get the ip address
+    parser.add_option("-t", "--target", dest="target_ip",
+                      help="Target IP / IP range")
+
+    options = parser.parse_args()
+
+    return options.target_ip
+
+
 def scan(ip_address):
     """
     Discover clients on the same network using ARP protocol.
@@ -53,25 +72,6 @@ def print_result(result_list):
     print("IP\t\t\t\tMAC Address\n--------------------------------------------")
     for client in result_list:
         print(client["ip"] + "\t\t" + client["mac"])
-
-
-def get_arguments():
-    # Get command line arguments
-    """
-    Get the target IP address from command line argument.
-
-    :return: IP Address of target device
-    :rtype: str
-    """
-    parser = optparse.OptionParser()
-
-    # Get the ip address
-    parser.add_option("-t", "--target", dest="ip",
-                      help="Target IP / IP range")
-
-    options = parser.parse_args()
-
-    return options.target
 
 
 if __name__ == "__main__":
