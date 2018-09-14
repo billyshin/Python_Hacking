@@ -1,5 +1,6 @@
 """
-Scan the current network and get the IP Address of target device.
+A program that uses target IP Address to get the target MAC Address under the 
+same network.
 
 Network Scanner Algorithm:
 1. Create arp request directed to broadcast MAC asking for IP

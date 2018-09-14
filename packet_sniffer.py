@@ -1,4 +1,7 @@
 """
+A program that acts as MITM (Man In The Middle) to sniff/capture data through 
+http layer such as url, username, password, etc.
+
 Packet Sniffer (Mainly http)
 
 Capture data flowing through an interface.

@@ -1,4 +1,6 @@
 """
+A program that is used to change the MAC Address to ensure anonymity.
+
 MAC Address Changer by calling system commands using subprocess module which
 is used to to ensure anonymity.
 

@@ -1,4 +1,7 @@
 """
+A program that functions exactly the same as arpspoof command in Kali Linux. 
+It takes target ip address and gateway ip address as command line arguments.
+
 ARP Spoofing: Tell router that I am victim device by sending victim device's 
 IP Address, and tell victim device that I am router by sending router's IP
 Address.
