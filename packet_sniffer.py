@@ -14,11 +14,15 @@ Display information such as:
     
 Caution: Running with arp_spoof.py at the same time. 
 
-Required: scapy library
-          scapy can be used to:
-            1. create packets
-            2. analyse packets
-            3. send/receive packets
+Required: 1. scapy library
+             scapy can be used to:
+                a) create packets
+                b) analyse packets
+                c) send/receive packets
+             but it can't be used to intercept packets
+          2. Scapy-http (Support for parsing HTTP in Scapy)
+                sudo pip install scapy-http
+        
 
 ARP Spoof + Packet Sniffer:
     1. Target a computer on the same network
@@ -26,7 +30,6 @@ ARP Spoof + Packet Sniffer:
     3. packet_sniffer to see URLs, usernames and passwords sent by target
 
 """
-#!/usr/bin/env python
 import scapy.all as scapy
 from scapy.layers import http
 import optparse
