@@ -24,6 +24,7 @@ Contents:
       
           Usage: python arp_spoof.py -t [Target IP Address] -g [Gateway]
      
-   4. packet_sniffer.py - A program that acts as MITM (Man In The Middle) to sniff/capture data through http layer such as url, username, password, etc.
+   4. packet_sniffer.py - A program that acts as MITM (Man In The Middle) to sniff/capture data through http layer such as url, username, password, etc. It must run with arp_spoof.py simultaneously.
       
-          Usage: python packet_sniffer.py -i [Interface]
+          Usage: python arp_spoof.py -t [Target IP Address] -g [Gateway]
+                 python packet_sniffer.py -i [Interface]
