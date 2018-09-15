@@ -2,14 +2,13 @@
 
 Programs and Tools written in Python that are useful in hacking in Kali Linux.
 
-Required:
+Required: Kali Linux, Python2, scapy package, netfilterqueue
 
-          Kali Linux
+          pip install scapy
           
-          Python2
+          pip install scapy-http
           
-          install scapy library
-          
+          pip install netfilterqueue
 
 Contents:
    1. mac_changer.py - A program that is used to change the MAC Address to ensure anonymity.
