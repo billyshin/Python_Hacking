@@ -27,3 +27,7 @@ Contents:
       
           Usage: python arp_spoof.py -t [Target IP Address] -g [Gateway]
                  python packet_sniffer.py -i [Interface]
+                 
+   5. dns_spoof.py - A program that acts as MITM (Man In The Middle) to intercept packets and store them in netfilterqueue and redirect target device to a certain IP Address.
+   
+          Usage: python dns_spoof.py -i [IP Address]
