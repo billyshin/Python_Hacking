@@ -2,13 +2,11 @@
 
 Programs and Tools written in Python that are useful in hacking in Kali Linux.
 
-Required:
+Required: Kali Linux, Python2
 
-          Kali Linux
+          pip install scapy
           
-          Python2
-          
-          install scapy library
+          pip install scapy-http
           
 
 Contents:
