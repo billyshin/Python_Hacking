@@ -34,16 +34,18 @@ def process_packet(packet):
 
 def use_iptables():
     num_queue = 0
-    subprocess.call(["iptables", "-I", "FORWARD", "-j", "NFQUEUE",
+    subprocess.call(["iptables", "-I", "OUTPUT", "-j", "NFQUEUE",
+                     "--queue-num", str(num_queue)])
+    subprocess.call(["iptables", "-I", "INPUT", "-j", "NFQUEUE",
                      "--queue-num", str(num_queue)])
     return num_queue
 
 
 if __name__ == "__main__":
-    # queue_number = use_iptables()
+    queue_number = use_iptables()
     queue = netfilterqueue.NetfilterQueue()
 
     # connect or bind the queue to the queue that we created using iptables by
     # giving queue number
-    queue.bind(0, process_packet)
+    queue.bind(queue_number, process_packet)
     queue.run()
