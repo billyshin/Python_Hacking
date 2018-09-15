@@ -35,8 +35,8 @@ def get_arguments():
     """
     Get the IP Address of target device and gateway.
 
-    :return: options and arugments of command line arguments
-    :rtype: (options, argument)
+    :return: IP Address of target device, new MAC Address
+    :rtype: str, str
     """
     parser = optparse.OptionParser()
 
@@ -47,18 +47,18 @@ def get_arguments():
     parser.add_option("-g", "--gateway", dest="gateway",
                       help="Gateway IP Address")
 
-    (options, arguments) = get_arguments()
+    (options, arguments) = parser.parse_args()
 
     # Code to handle error
-    if not options.interface:
+    if not options.target:
         parser.error(
             "[-] Please specify an IP Address of target device,"
             " use --help for more info.")
-    elif not options.new_mac_address:
+    elif not options.gateway:
         parser.error(
             "[-] Please specify a Gateway IP Address"
             ", use --help for more info.")
-    return options
+    return options.target, options.gateway
 
 
 def get_mac(ip_address):
@@ -117,12 +117,12 @@ def restore(destination_ip, source_ip):
 
 
 if __name__ == "__main__":
-    command_options = get_arguments()
+    input_target, input_gateway = get_arguments()
     sent_packets_count = 0
     try:
         while True:
-            spoof(command_options.target, command_options.gateway)
-            spoof(command_options.gateway, command_options.target)
+            spoof(input_target, input_gateway)
+            spoof(input_gateway, input_target)
             sent_packets_count += 2
             # Python2
             print("\r[-] Packets sent: " + str(sent_packets_count)),
@@ -133,5 +133,5 @@ if __name__ == "__main__":
             time.sleep(2)
     except KeyboardInterrupt:
         print("[-] Detected CTRl + C ...... Quitting.")
-        restore(command_options.target, command_options.gateway)
-        restore(command_options.gateway, command_options.target)
+        restore(input_target, input_gateway)
+        restore(input_gateway, input_target)
