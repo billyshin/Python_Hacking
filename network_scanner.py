@@ -56,8 +56,8 @@ def scan(ip_address):
 
     # get list of client(ip address, mac address)
     clients_list = []
-    for elements in answered_list:
-        client_dict = {"ip": elements[1].psrc, "mac": elements[1].hwrc}
+    for element in answered_list:
+        client_dict = {"ip": element[1].psrc, "mac": element[1].hwsrc}
         clients_list.append(client_dict)
     return clients_list
 
