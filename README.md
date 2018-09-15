@@ -31,3 +31,10 @@ Contents:
    5. dns_spoof.py - A program that acts as MITM (Man In The Middle) to intercept packets and store them in netfilterqueue and redirect target device to a certain IP Address.
    
           Usage: python dns_spoof.py -i [IP Address]
+          
+  6. file_interceptor.py - A program that hijacks target's HTTP request and modifies HTTP status code as well as HTTP response in order to redirect to user specified url.
+  
+          Usage: iptables -I FORWARD -j NFQUEUE --queue-num 0
+                 python arp_spoof.py -t [Target IP Address] -g [Gateway]
+                 python file_interceptor.py -r [Redirect URL]
+                 
