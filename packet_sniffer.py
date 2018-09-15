@@ -15,6 +15,10 @@ Display information such as:
 Caution: Running with arp_spoof.py at the same time. 
 
 Required: scapy library
+          scapy can be used to:
+            1. create packets
+            2. analyse packets
+            3. send/receive packets
 
 ARP Spoof + Packet Sniffer:
     1. Target a computer on the same network
