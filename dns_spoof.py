@@ -25,7 +25,7 @@ import subprocess
 def process_packet(packet):
     print(packet.get_payload())
     # forward the packet to destination
-    packet.accpet()
+    packet.accept()
 
     # cut the internet connection of the target client
     # i.e. not allowing the packet to reach destination
