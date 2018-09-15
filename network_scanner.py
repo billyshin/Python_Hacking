@@ -33,7 +33,7 @@ def get_arguments():
     parser.add_option("-t", "--target", dest="target_ip",
                       help="Target IP / IP range")
 
-    options = parser.parse_args()
+    options, arguments = parser.parse_args()
 
     return options.target_ip
 
@@ -57,7 +57,7 @@ def scan(ip_address):
     # get list of client(ip address, mac address)
     clients_list = []
     for elements in answered_list:
-        client_dict = {"ip":elements[1].psrc, "mac": elements[1].hwrc}
+        client_dict = {"ip": elements[1].psrc, "mac": elements[1].hwrc}
         clients_list.append(client_dict)
     return clients_list
 
