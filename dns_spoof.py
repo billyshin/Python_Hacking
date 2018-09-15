@@ -41,7 +41,7 @@ def use_iptables():
 
 if __name__ == "__main__":
     queue_number = use_iptables()
-    queue = netfilterqueue.Netfilterqueue()
+    queue = netfilterqueue.NetfilterQueue()
 
     # connect or bind the queue to the queue that we created using iptables by
     # giving queue number
