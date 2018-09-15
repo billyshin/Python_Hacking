@@ -35,7 +35,7 @@ def process_packet(packet):
 def use_iptables():
     num_queue = 0
     subprocess.call(["iptables", "-I", "FORWARD", "-j", "NFQUEUE",
-                     "--queue-num", num_queue])
+                     "--queue-num", str(num_queue)])
     return num_queue
 
 
