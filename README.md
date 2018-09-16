@@ -42,16 +42,27 @@ Contents:
   
           Usage: python download.py -u [URL] -d [Destination loaction]
           
-  8. reverse_backdoor.py - A backdoor program that allows hacker to execute simple commands on target device using reversed TCP. It must be run in the target device locally, and thus social engineering or any other MITM attack should be used. It works in all environment that supports Python. listener.py only works when reverse_backdoor.py is running locally in target device.
+  8. reverse_backdoor.py - A backdoor program that allows hacker to execute simple commands on target device using reversed TCP. Need to change ip_address to your current IP Address in main code. It must be run in the target device locally, and thus social engineering or any other MITM attack should be used. It works in all environment that supports Python. listener.py only works when reverse_backdoor.py is running locally in target device.
           
   8. listener.py - A socket program that allows us to listen from the reverser_backdoor.py program.
         
            Usage: reverse_backdoor.py is running in target device
                   python listener.py -i [IP Address]
                   
-     Available commands:
+     Available commands in hacker's machine:
+          
+     1. Disable backdoor connection
      
-          eixt
-          cd [Destination directory]
-          download [File]
-          upload [File]
+                    exit
+     
+     2. Change working directory
+
+                    cd [Destination directory]
+                   
+     3. Download/Read file from target device
+                    
+                    download [File]
+                    
+     4. Upload/Write file to traget device
+                    
+                    upload [File]
