@@ -66,3 +66,6 @@ Contents:
      4. Upload/Write file to traget device
                     
                     upload [File]
+
+
+code_injector.py, bypass_http.py, kelogger.py, malware_packing.py, web_hack.py, crawler.py, vulnerability_scanner.py comming soon...
