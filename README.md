@@ -37,4 +37,21 @@ Contents:
           Usage: iptables -I FORWARD -j NFQUEUE --queue-num 0
                  python arp_spoof.py -t [Target IP Address] -g [Gateway]
                  python file_interceptor.py -r [Redirect URL]
-                 
+       
+  7. download.py - A program that download a file from input URL and save it to input destination location.
+  
+          Usage: python download.py -u [URL] -d [Destination loaction]
+          
+  8. reverse_backdoor.py - A backdoor program that allows hacker to execute simple commands on target device using reversed TCP. It must be run in the target device locally, and thus social engineering or any other MITM attack should be used. It works in all environment that supports Python. listener.py only works when reverse_backdoor.py is running locally in target device.
+          
+  8. listener.py - A socket program that allows us to listen from the reverser_backdoor.py program.
+        
+           Usage: reverse_backdoor.py is running in target device
+                  python listener.py -i [IP Address]
+                  
+     Available commands:
+     
+          eixt
+          cd [Destination directory]
+          download [File]
+          upload [File]
