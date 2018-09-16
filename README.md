@@ -15,7 +15,7 @@ Contents:
       
           Usage: python mac_changer.py -i [Interface] -m [new MAC Address]
       
-   2. network_scanner.py - A program that uses target IP Address to get the target MAC Address under same network.
+   2. network_scanner.py - A program that uses target IP Address to get the target MAC Address under the same network.
       
           Usage: python network_scanner.py -t [Taget IP Address]
       
