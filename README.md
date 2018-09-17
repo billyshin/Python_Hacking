@@ -44,7 +44,7 @@ Contents:
           
   8. reverse_backdoor.py - A backdoor program that allows hacker to execute simple commands on target device using reversed TCP. Need to change ip_address to your current IP Address in main code. It must be run in the target device locally, and thus social engineering or any other MITM attack should be used. It works in all environment that supports Python. listener.py only works when reverse_backdoor.py is running locally in target device.
           
-  8. listener.py - A socket program that allows us to listen from the reverser_backdoor.py program.
+  9. listener.py - A socket program that allows us to listen from the reverser_backdoor.py program.
         
            Usage: reverse_backdoor.py is running in target device
                   python listener.py -i [IP Address]
@@ -67,5 +67,12 @@ Contents:
                     
                     upload [File]
 
+  10. crawler.py - A prgroam that can checks subdomains and directories of a web server given an url.
+  
+          Usage: python cralwer.py -u [URL]
+          
+  11. spider.py - A program that extracts all valid hyperlinks from a website given an url.
+          
+          Usage: python spider.py -u [URL]
 
-code_injector.py, bypass_http.py, kelogger.py, malware_packing.py, web_hack.py, crawler.py, vulnerability_scanner.py comming soon...
+code_injector.py, bypass_http.py, kelogger.py, malware_packing.py, vulnerability_scanner.py comming soon...
