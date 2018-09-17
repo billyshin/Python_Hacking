@@ -4,6 +4,9 @@ A program that get datas from website.
 Crawling directories:
     1. Directories inside the web root
     2. Can contain files or other directories
+    
+Discover hidden paths that admin does not want us to know
+Analyse discovered paths to discover more paths
 
 """
 import optparse
@@ -12,16 +15,20 @@ import requests
 
 def get_arguments():
     """
-    Get the url of a target website.
+    Get the url of a target website and he method that we want to use.
 
-    :return: the url of a website
-    :rtype: str
+    :return: the url of a website, the method that we want to use
+    :rtype: str, str
     """
     parser = optparse.OptionParser()
 
-    # Get the name of intergace from user input
+    # Get the url
     parser.add_option("-u", "--url", dest="url",
                       help="URL of website")
+
+    # Get method
+    parser.add_option("-m", "--method", dest="method",
+                      help="Method")
 
     (options, arguments) = parser.parse_args()
 
@@ -30,7 +37,11 @@ def get_arguments():
         parser.error(
             "[-] Please specify an url, use --help for more info.")
 
-    return options.url
+    if not options.method:
+        parser.error(
+            "[-] Please specify a method, use --help for more info.")
+
+    return options.url, options.method
 
 
 def request(url):
@@ -56,7 +67,7 @@ def find_subdomain(url):
     with open("./subdomains-wodlist.txt", "r") as wordlist_file:
         for line in wordlist_file:
             word = line.strip()
-            test_url = word + "." + target_url
+            test_url = word + "." + url
             response = request(test_url)
             if response:
                 print("[+] Discovered subdomian --> " + test_url)
@@ -77,7 +88,9 @@ def find_directories(url):
                 print("[+] Discovered URL --> " + test_url)
 
 if __name__ == "__main__":
-    #target_url = get_arguments()
-    # test
-    target_url = "10.0.2.7/mutillidae/"
-    find_directories(target_url)
+    target_url, method = get_arguments()
+    if method:
+        if method == "subdomain":
+            find_subdomain(target_url)
+        if method == "directory":
+            find_directories(target_url)
