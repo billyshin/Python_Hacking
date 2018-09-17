@@ -71,13 +71,13 @@ def find_directories(url):
     with open("./files-and-dirs-wordlist.txt", "r") as wordlist_file:
         for line in wordlist_file:
             word = line.strip()
-            test_url = target_url + "/" + target_url
+            test_url = url + "/" + word
             response = request(test_url)
             if response:
                 print("[+] Discovered URL --> " + test_url)
 
 if __name__ == "__main__":
-    target_url = get_arguments()
+    #target_url = get_arguments()
     # test
     target_url = "10.0.2.7/mutillidae/"
     find_directories(target_url)
