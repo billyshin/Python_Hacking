@@ -1,29 +1,73 @@
-import requests
-import re
+import optparse
 
 import requests
 import re
 
+import requests
+import re
+import urlparse
 
-def request(url):
+target_links = []
+
+
+def get_arguments():
     """
-    Reqeust from url. 
-    :param url: url of website
+    Get the url of a target website.
+
+    :return: the url of a website
+    :rtype: str
+    """
+    parser = optparse.OptionParser()
+
+    # Get the url
+    parser.add_option("-u", "--url", dest="url",
+                      help="URL of website")
+
+    (options, arguments) = parser.parse_args()
+
+    # Code to handle error
+    if not options.url:
+        parser.error(
+            "[-] Please specify an url, use --help for more info.")
+
+    return options.url
+
+
+def extract_links_from(url):
+    """
+    Get request from url and return all of its links.
+    :param url: url of a website/web server
     :type url: str
-    :return: result of request
-    :rtype: obj
+    :return: list of href
+    :rtype: list
     """
-    try:
-        return requests.get("http://" + url)
-    except requests.exceptions.ConnectionError:
-        pass
+    response = requests.get(url)
 
-if __name__ == "__main__":
-    target_url = "10.0.2.7"
+    return re.findall('(?:href=")(.*?)"', response.content)
 
-    response = request(target_url)
 
-    href_links = re.findall('(?:href=")(.*?)"', response.content)
+def craw(url):
+    """ 
+    Recrusively find all ahref links and print them.
+    
+    :param url: url 
+    :type url: str
+    """
+    href_links = extract_links_from(url)
 
     for link in href_links:
-        print(link)
+        link = urlparse.urljoin(url, link)
+
+        if "#" in link:
+            link = link.split("#")[0]
+
+        if url in link and link not in target_links:
+            target_links.append(link)
+            print(link)
+            craw(link)
+
+
+if __name__ == "__main__":
+    target_url =get_arguments()
+
+    craw(target_url)

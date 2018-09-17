@@ -15,7 +15,7 @@ import requests
 
 def get_arguments():
     """
-    Get the url of a target website and he method that we want to use.
+    Get the url of a target website and the method that we want to use.
 
     :return: the url of a website, the method that we want to use
     :rtype: str, str
