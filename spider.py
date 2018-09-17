@@ -64,6 +64,6 @@ def craw(url):
 
 
 if __name__ == "__main__":
-    target_url =get_arguments()
+    target_url = get_arguments()
 
     craw(target_url)
