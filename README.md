@@ -15,7 +15,7 @@ Contents:
       
           Usage: python mac_changer.py -i [Interface] -m [new MAC Address]
       
-   2. network_scanner.py - A program that uses target IP Address to get the target MAC Address under same network.
+   2. network_scanner.py - A program that uses target IP Address to get the target MAC Address under the same network.
       
           Usage: python network_scanner.py -t [Taget IP Address]
       
@@ -37,4 +37,35 @@ Contents:
           Usage: iptables -I FORWARD -j NFQUEUE --queue-num 0
                  python arp_spoof.py -t [Target IP Address] -g [Gateway]
                  python file_interceptor.py -r [Redirect URL]
-                 
+       
+  7. download.py - A program that download a file from input URL and save it to input destination location.
+  
+          Usage: python download.py -u [URL] -d [Destination loaction]
+          
+  8. reverse_backdoor.py - A backdoor program that allows hacker to execute simple commands on target device using reversed TCP. Need to change ip_address to your current IP Address in main code. It must be run in the target device locally, and thus social engineering or any other MITM attack should be used. It works in all environment that supports Python. listener.py only works when reverse_backdoor.py is running locally in target device.
+          
+  8. listener.py - A socket program that allows us to listen from the reverser_backdoor.py program.
+        
+           Usage: reverse_backdoor.py is running in target device
+                  python listener.py -i [IP Address]
+                  
+     Available commands in hacker's machine:
+          
+     1. Disable backdoor connection
+     
+                    exit
+     
+     2. Change working directory
+
+                    cd [Destination directory]
+                   
+     3. Download/Read file from target device
+                    
+                    download [File]
+                    
+     4. Upload/Write file to traget device
+                    
+                    upload [File]
+
+
+code_injector.py, bypass_http.py, kelogger.py, malware_packing.py, web_hack.py, crawler.py, vulnerability_scanner.py comming soon...
